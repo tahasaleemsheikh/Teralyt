@@ -2,9 +2,11 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from sqlalchemy import text
-
+from app.database import Base, engine
+from app import models
 from app.database import engine
-
+# Create database tables for local development.
+Base.metadata.create_all(bind=engine)
 app = FastAPI(
     title="Teralyt API",
     version="1.0.0",
