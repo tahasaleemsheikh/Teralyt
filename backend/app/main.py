@@ -1,6 +1,9 @@
 
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
+from sqlalchemy import text
+
+from app.database import engine
 
 app = FastAPI(
     title="Teralyt API",
@@ -37,4 +40,15 @@ def health_check():
     return {
         "status": "healthy",
         "service": "teralyt-api",
+    }
+
+
+@app.get("/health/db")
+def database_health_check():
+    with engine.connect() as connection:
+        connection.execute(text("SELECT 1"))
+
+    return {
+        "status": "connected",
+        "database": "teralyt_db",
     }

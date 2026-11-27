@@ -5,7 +5,7 @@ public/config.js
 .DS_Store
 Thumbs.db
 __pycache__/
-*.pyc
+*.pycs
 
 # downloaded source images (official plan); fetched by tools/make_data.py
 tools/source/cache/
@@ -14,3 +14,10 @@ tools/source/cache/
 node_modules/
 dist/
 .env.local
+
+
+# Environment secrets
+.env
+backend/.env
+backend/venv/
+backend/.venv/
